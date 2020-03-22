@@ -4263,7 +4263,8 @@ tbody.collapse.show {
   list-style: none;
 }
 
-.nav-link {
+.nav-link,
+.nav-tabs-title {
   display: block;
   padding: 0.5rem 1rem;
 }
@@ -4289,15 +4290,18 @@ tbody.collapse.show {
   margin-bottom: -1px;
 }
 
-.nav-tabs .nav-link {
+.nav-tabs .nav-link,
+.nav-tabs-title {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 
-.nav-tabs .nav-link:hover,
-.nav-tabs .nav-link:focus {
+
+.nav-tabs .nav-item .nav-link:hover,
+.nav-tabs .nav-item .nav-link:focus {
   border-color: #e9ecef #e9ecef #dee2e6;
+  background-color: #d5a2e99c;
 }
 
 .nav-tabs .nav-link.disabled {
@@ -14467,22 +14471,28 @@ h2.title {
   color: #999999 !important;
 }
 
-.nav-tabs {
+.nav-tabs, .nav-tabs-title {
   border: 0;
   border-radius: 3px;
   padding: 0 15px;
 }
 
-.nav-tabs .nav-item .nav-link {
+.nav-tabs .nav-item .nav-link p{
+  padding-top: 20px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+}
+
+.nav-tabs .nav-item .nav-link,
+.nav-tabs-title {
   position: relative;
   color: #fff;
   border: 0;
   margin: 0;
   border-radius: 3px;
-  line-height: 24px;
+  line-height: 0px;
   text-transform: uppercase;
   font-size: 12px;
-  padding: 10px 15px;
   background-color: transparent;
   transition: 0.3s background-color 0s;
 }
@@ -14493,7 +14503,8 @@ h2.title {
 
 .nav-tabs .nav-item .nav-link,
 .nav-tabs .nav-item .nav-link:hover,
-.nav-tabs .nav-item .nav-link:focus {
+.nav-tabs .nav-item .nav-link:focus,
+.nav-tabs-title {
   border: 0 !important;
   color: #fff !important;
   font-weight: 500;
@@ -14513,7 +14524,8 @@ h2.title {
   transition: 0.3s background-color 0.2s;
 }
 
-.nav-tabs .nav-link {
+.nav-tabs .nav-link,
+.nav-tabs-title {
   border-bottom: 0.214rem solid transparent;
 }
 
@@ -17767,8 +17779,8 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
 .card .card-header.card-header-tabs .nav-tabs-title {
   float: left;
-  padding: 10px 10px 10px 0;
-  line-height: 24px;
+  padding: 10px 0px 0px 0;
+  margin: -2px;
 }
 
 .card.card-plain .card-header.card-header-icon+.card-body .card-title,
@@ -17864,6 +17876,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   border-radius: 3px;
   margin-top: -20px;
   padding: 15px;
+  padding-bottom: 0px;
 }
 
 .card [class*="card-header-"] .card-icon,
@@ -19758,3 +19771,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+.nav p{
+  cursor: default;
+}
+
+.nav-tabs-wrapper{
+  padding-top: 10px;
+}

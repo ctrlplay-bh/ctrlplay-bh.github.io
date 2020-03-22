@@ -49,6 +49,11 @@ var seq2 = 0,
   delays2 = 80,
   durations2 = 500;
 
+// Change the color on the sidebar when some item is expanded
+$('.nav-item').on("click", function(){
+  $(this).toggleClass('active');
+});
+
 $(document).ready(function() {
 
   $('body').bootstrapMaterialDesign();
