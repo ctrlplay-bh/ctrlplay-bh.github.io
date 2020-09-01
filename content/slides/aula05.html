@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Aula 05 - Mais CSS: Flow Layout</title>
+
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+
+  <style>
+    dd {
+      color: rgb(102, 102, 102);
+      margin-bottom: 15px;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      margin-top: 1.5em;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .center-div {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    :root {
+      font-size: 25px;
+    }
+
+    .padding-div {
+      padding: 1px;
+      margin: 10px;
+    }
+
+    .not-padding-div {
+      margin: 10px;
+    }
+
+    .ispan {
+      background-color:rgb(250, 0, 75);
+    }
+
+    .spansize{
+      width: 200px;
+      height: 200px;
+      background-color:rgb(132, 60, 247)
+    }
+
+    .spanblock{
+      width: 200px;
+      height: 200px;
+      display: block;
+      background-color:rgb(132, 60, 247)
+    }
+
+    .spanbox{
+      width: 200px;
+      height: 200px;
+      background-color:rgb(132, 60, 247);
+      padding: 20px;
+      border: 20px solid red;
+      margin: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <section class="slides">
+      <!-- Capa -->
+      <section>
+        <h1>Ctrl+Young 2</h1>
+        <h3>
+          Aula Extra -
+          <span style="color: rgb(62, 85, 219);">CSS</span>:
+          Flow Layout
+        </h3>
+        <p>
+          <small><span><strong>Marcelo Guimarães Pinto</strong></span>
+            - 19/08/2020</small>
+        </p>
+      </section>
+      <!-- Objetivos -->
+      <section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <h3>
+            Aprender como posicionar itens usando
+            <span style="color: rgb(62, 85, 210);">CSS</span>
+          </h3>
+          <br />
+          <div>
+            <ul style="font-size: 1.8rem;">
+              <p class="fragment">Duas propriedades:</p>
+              <li class="fragment">Display</li>
+              <li class="fragment">Position</li>
+            </ul>
+          </div>
+        </section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <p>
+            Dentre os tipos de <em>display</em> possíveis de
+            serem utilizados podemos separar os mais importante
+            em duas categorias:
+          </p>
+        </section>
+        <section>
+          <dl>
+            <dt>Display-Outside</dt>
+            <dd>
+              É responsável por descrever o comportamento do
+              <em>layout</em> entre dois elementos adjacentes.
+            </dd>
+            <dt>Display-Inside</dt>
+            <dd>
+              É responsável por descrever o comportamento do
+              <em>layout</em> entre um elemento pai e seus
+              elementos filhos.
+            </dd>
+          </dl>
+        </section>
+        <section>
+          <div>
+            <ul style="font-size: 3rem;">
+              <p>&lt;Display-Outside&gt;</p>
+              <br>
+              <li class="fragment">Block</li>
+              <li class="fragment">Inline</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h2><em>Flow Layout</em></h2>
+          <p>Os elementos com display <em>block</em> ou <em>inline</em> participam do <em>layout</em> padrão do CSS.
+            Veremos como isso funciona para cada tipo de <em>display</em>.</p>
+        </section>
+      </section>
+      <!-- Block Display -->
+      <section>
+        <section>
+          <h2>Display: Block</h2>
+        </section>
+
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p style="font-size: 2rem"> Um elemento com <em>display block</em> gera uma quebra de linha antes e
+            depois do elemento</p>
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+ &lt;div style="background-color:#08B"&gt;
+   Algum texto
+ &lt;/div&gt;
+ &lt;div style="background-color:#F04"&gt;
+   Outro texto
+ &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div style="background-color:#08B">
+                Algum texto
+              </div>
+              <div style="background-color:#F04">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p style="font-size: 2rem"> Por padrão ele ocupa todo o <em>width</em> disponível para ele.</p>
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+                  
+ &lt;div class="col" style="border: 1px solid red"&gt;
+   &lt;div style="background-color:#08B"&gt;
+     Algum texto
+   &lt;/div&gt;
+   &lt;div style="background-color:#F04"&gt;
+     Outro texto
+   &lt;/div&gt;
+ &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col" style="border:1px solid red">
+              <div style="background-color:#08B">
+                Algum texto
+              </div>
+              <div style="background-color:#F04">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p style="font-size: 2rem"> Mas faz a quebra de linha mesmo que exista mais espaço disponível.</p>
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+&lt;div class="col" style="border: 1px solid red"&gt;
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    Algum texto
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col" style="border:1px solid red">
+              <div style="background-color:#08B; width: 25%">
+                Algum texto
+              </div>
+              <div style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p style="font-size: 2rem">Um elemento block pode ter outros elementos dentro, estes irão se comportar entre
+            si, ou seja, <strong style="color:#F04">internamente</strong>, seguindo o <em>flow layout</em>.</p>
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background-color:#771; font-size: 0.7em"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%">
+                <div style="background-color:#3A3; font-size: 0.7em">
+                  Bloco interno 1
+                </div>
+                <div style="background-color:#771; font-size:0.7em">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0" style="font-size: 2rem">Usando
+              <em>margin</em> podemos ver melhor</p>
+            <p class="fragment fade-in-then-out" data-fragment-index="0" style="font-size: 2rem">É
+              importante falar sobre o <em>margin collapse</em></p>
+            <p class="fragment fade-in" data-fragment-index="1" style="font-size: 2rem">
+              Veja o que acontece quando colocamos margin no bloco interno 2
+            </p>
+          </div>
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em; margin: 5px;"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background-color:#771; font-size: 0.7em"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%">
+                <div style="background-color:#3A3; font-size: 0.7em; margin:15px;">
+                  Bloco interno 1
+                </div>
+                <div style="background-color:#771; font-size:0.7em">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0" style="font-size: 2rem">
+              Não há diferença alguma na margem entre o bloco 1 e o bloco 2!
+            </p>
+            <p class="fragment fade-in-then-out" data-fragment-index="0" style="font-size: 2rem">
+              Isso ocorre pois um <em>border collapse</em> acontece onde somente a borda maior irá existir
+            </p>
+
+          </div>
+
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em; margin: 15px;"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background-color:#771; font-size:0.7em; margin:5px"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%">
+                <div style="background-color:#3A3; font-size: 0.7em; margin:15px;">
+                  Bloco interno 1
+                </div>
+                <div style="background-color:#771; font-size:0.7em; margin:5px">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0" style="font-size: 2rem">
+              Se aumentarmos o valor para 15px, ou seja, igual a margem inferior do bloco interno 1,
+            </p>
+            <p class="fragment fade-in-then-out" data-fragment-index="0" style="font-size: 2rem">
+              ainda assim não haveria mudanças na margem entre os dois blocos internos.
+            </p>
+
+          </div>
+
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em; margin: 15px;"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background:#771; font-size:0.7em; margin:15px"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%">
+                <div style="background-color:#3A3; font-size: 0.7em; margin:15px;">
+                  Bloco interno 1
+                </div>
+                <div style="background:#771; font-size:0.7em; margin:15px">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0" style="font-size: 2rem">
+              Quando a margem superior do bloco 2 fica maior, percebe-se uma diferença
+              <p class="fragment fade-in-then-out" data-fragment-index="0" style="font-size: 2rem">
+                Isso é o <em>margin-collapse</em>.
+              </p>
+              <p class="fragment fade-in-then-out" data-fragment-index="1" style="font-size: 2rem">
+                O <em>margin-collapse</em> <i style="color:#F04">somente</i> ocorre entre margens verticais!
+              </p>
+              <p class="fragment fade-in-then-out" data-fragment-index="2" style="font-size: 2rem">
+                Você deve ter reparado no espaço sem cor entre a div com fundo azul e fundo rosa, certo?
+              </p>
+              <p class="fragment fade-in-then-out" data-fragment-index="3" style="font-size: 2rem">
+                Isso também é um caso de <em>margin-collapse</em>, porém ela ocorre entre a margem dos elementos pai e
+                filho
+              </p>
+              <p class="fragment fade-in" data-fragment-index="4" style="font-size: 2rem">
+                Uma das várias maneiras de impedir isso, é colocando um padding de um 1px na div externa. Isso irá
+                separar as margens de elementos pai e filho.
+              </p>
+          </div>
+
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em; margin: 15px;"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background:#771; font-size:0.7em; margin:30px"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%">
+                <div style="background-color:#3A3; font-size: 0.7em; margin:15px;">
+                  Bloco interno 1
+                </div>
+                <div style="background:#771; font-size:0.7em; margin: 30px">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+
+          <p class="fragment fade-out" data-fragment-index="0" style="font-size: 2rem">
+            Existem outras maneiras mais eficientes de fazer isso, mas precisamos entender mais sobre como o CSS
+            renderiza os elementos.
+          </p>
+
+
+          <div class="container">
+            <div class="col">
+              <pre><code style="font-size: 0.8em">
+
+  &lt;div style="background-color:#08B; width: 25%; padding: 1px"&gt;
+    &lt;div style="background-color:#3A3; font-size: 0.7em; margin: 15px;"&gt;
+      Bloco interno 1
+    &lt;/div&gt;
+    &lt;div style="background:#771; font-size:0.7em; margin:30px"&gt;
+      Bloco interno 2
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style="background-color:#F04; width: 25%"&gt;
+    Outro texto
+  &lt;/div&gt;
+                </code></pre>
+
+            </div>
+            <div class="col">
+              <div class="center-div" style="background-color:#08B; width: 25%; padding: 1px">
+                <div style="background-color:#3A3; font-size: 0.7em; margin:15px;">
+                  Bloco interno 1
+                </div>
+                <div style="background:#771; font-size:0.7em; margin: 30px">
+                  Bloco interno 2
+                </div>
+              </div>
+              <div class="center-div" style="background-color:#F04; width: 25%">
+                Outro texto
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p> Exemplo de <em>border collapsing</em> ao se usar margem nas divs</p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                  <div class="not-padding-div" style="background-color: rgb(132, 60, 247);">
+                    <div  class="not-padding-div" style="background-color: rgb(62, 62, 224)">
+                      <div class="not-padding-div"  style="background-color: rgb(238, 235, 79)">
+                        <div class="not-padding-div"  style="background-color: rgb(77, 223, 77)">
+                          <div class="not-padding-div"  style="background-color: rgb(212, 58, 84); font-size: 0.6em;">
+                            Collapsed
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="not-padding-div" style="background-color: rgb(132, 60, 247);">
+                <div class="not-padding-div" style="background-color: rgb(62, 62, 224)">
+                  <div class="not-padding-div" style="background-color: rgb(238, 235, 79)">
+                    <div class="not-padding-div" style="background-color: rgb(77, 223, 77)">
+                      <div class="not-padding-div" style="background-color: rgb(212, 58, 84); font-size: 0.6em;">
+                        Collapsed
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section data-transition="fade-in">
+          <h3> Block </h3>
+          <p>Sem <em>border collapse</em></p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                    <div class="padding-div" style="background-color: rgb(132, 60, 247);">
+                      <div  class="padding-div" style="background-color: rgb(62, 62, 224)">
+                        <div class="padding-div"  style="background-color: rgb(238, 235, 79)">
+                          <div class="padding-div"  style="background-color: rgb(77, 223, 77)">
+                            <div class="padding-div"  style="background-color: rgb(212, 58, 84); font-size: 0.6em;">
+                              Not Collapsed
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="padding-div" style="background-color: rgb(132, 60, 247);">
+                <div class="padding-div" style="background-color: rgb(62, 62, 224)">
+                  <div class="padding-div" style="background-color: rgb(238, 235, 79)">
+                    <div class="padding-div" style="background-color: rgb(77, 223, 77)">
+                      <div class="padding-div" style="background-color: rgb(212, 58, 84); font-size: 0.6em;">
+                        Not Collapsed
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- Inline display -->
+      <section>
+        <section>
+          <h2>Display: Inline</h2>
+        </section>
+        <section>
+          <p>Diferentemente de <em>block</em> o <em>display: inline</em> não quebra linhas</p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.8em" data-trim>
+                    <p>
+                      Um paragráfo é um bloco mas <i>span</i> é <span class="ispan">inline</span>
+                    </p>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <p>
+                Um paragráfo é um bloco mas <i>span</i> é <span class="ispan">inline</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0">Um elemento do com <em>display: inline</em> não possui <i>width</i> nem <i>height</i></p>
+            <p class="fragment fade-in-then-out" data-fragment-index="0">Ele sempre será do tamanho do seu <em>box model</em></p>
+          </div>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .spanmargin{
+                      width: 200px;
+                      height: 200px;
+                      background-color: rgb(132, 60, 247)
+                    }
+                  </style>
+                  <p>
+                    <span>Um</span> <span class="spansize">texto</span> <span>com</span> <span>span</span>
+                  </p>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <p>
+                <span>Um</span> <span class="spansize">texto</span> <span>com</span> <span>span</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <p>Mas se o transformamos em um <em>block</em>...</p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .spanblock{
+                      width: 200px;
+                      height: 200px;
+                      display: block;
+                      background-color: rgb(132, 60, 247)
+                    }
+                  </style>
+                  <p>
+                    <span>Um</span> <span class="spanblock">texto</span> <span>com</span> <span>span</span>
+                  </p>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <p>
+                <span>Um</span> <span class="spanblock">texto</span> <span>com</span> <span>span</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <p>Como o padding faz parte do elemento, ele também irá afetar o tamanho.</p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .spanblock{
+                      width: 200px;
+                      height: 200px;
+                      background-color: rgb(132, 60, 247)
+                    }
+                  </style>
+                  <p>
+                    <span>Um</span> <span class="spansize" style="padding: 20px">texto</span> <span>com</span> <span>span</span>
+                  </p>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <p>
+                <span>Um</span> <span class="spansize" style="padding: 20px">texto</span> <span>com</span> <span>span</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <p>Assim como o border e margin(se não acontecer o margin collapse!)</p>
+          <div class="container">
+            <div class="col">
+              <pre>
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .spanbox{
+                      width: 200px;
+                      height: 200px;
+                      background-color:rgb(132, 60, 247);
+                      padding: 20px;
+                      border: 20px solid red;
+                      margin: 30px;
+                    }
+                  </style>
+                  <p>
+                    <span>Um</span> <span class="spanbox">texto</span> <span>com</span> <span>span</span>
+                  </p>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <p>
+                <span>Um</span> <span class="spanbox">texto</span> <span>com</span> <span>span</span>
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- Conclusão -->
+      <section>
+        <section>
+          <h2>Tanto o <em>display: block</em> quanto o <em>display: inline</em> fazem parte do <em>flow layout</em></h2>
+        </section>
+        <section>
+          <h2>Esse é o modo padrão de funcionamento do CSS</h2>
+        </section>
+        <section>
+          <h2>Considerando o início da internet, ele era um padrão normal de se pensar</h2>
+          <p> As páginas eram simples, contendo apenas imagens, links e texto</p>
+        </section>
+        <section>
+          <h2>Isso foi mudando e era necessário páginas mais estilizadas</h2>
+          <div class="r-stack">
+            <p class="fragment fade-out" data-fragment-index="0">Era preciso <em>layouts</em> mais modernos, visivelmente agradáveis</p>
+            <p class="fragment fade-in-then-out" data-fragment-index="0"> Surgiram várias técnicas para se fazer isso</p>
+            <p class="fragment fade-in" data-fragment-index="1"> Usando tables, usando floats e vários outros hacks</p>
+          </div>
+        </section>
+        <section>
+          <h2>Até a chegada do CSS3</h2>
+        </section>
+        <section>
+          <h2>Flexbox e Grid</h2>
+          <p class="fragments fade-in">Os displays flexbox e grid são as versões mais novas e eficientes de criar o layout do site</p>
+          <p> É muito mais simples criar páginas estilizadas através deles. Além disso, as funções específicas para o uso dos floats, por exemplo, faz muito mais sentido</p>
+        </section>
+        <section>
+          <h2>Vamos ver um pouco</h2>
+          <img src="images/bora.png" alt="" class="fragment fade-up" style="transition: 2s ease-in">
+        </section>
+      </section>
+    </section>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/search/search.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // Also available as an ES module, see:
+    // https://revealjs.com/initialization/
+    Reveal.initialize({
+      width: "100%",
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+    });
+  </script>
+</body>
+
+</html>

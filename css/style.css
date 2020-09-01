@@ -977,6 +977,16 @@ ul.footer-grid-list li span {
     font-size: 0.7em;
     color: #212121;
 }
+.pa_italic.empty{
+
+    color: #DDD;
+    pointer-events: none;
+}
+
+.pa_italic.empty span{
+    visibility: hidden;
+}
+
 .collapsed i {
     display: none;
 }
@@ -1025,6 +1035,12 @@ ul.footer-grid-list li span {
 .panel-group .panel-heading + .panel-collapse > .panel-body,
 .panel-group .panel-heading + .panel-collapse > .list-group {
     border: none;
+}
+
+ul.class-items{
+    list-style: none;
+    margin-left: 2em;
+    
 }
 /*-- //about --*/
 /*-- team --*/

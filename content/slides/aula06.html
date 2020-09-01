@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Aula 06 - CSS: Position</title>
+
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+
+  <style>
+    dd {
+      color: rgb(102, 102, 102);
+      margin-bottom: 15px;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      margin-top: 1.5em;
+      align-items: flex-start;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .center-div {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    :root {
+      font-size: 25px;
+    }
+
+    .padding-div {
+      padding: 1px;
+      margin: 10px;
+    }
+
+    .not-padding-div {
+      margin: 10px;
+    }
+
+    .ispan {
+      background-color: rgb(250, 0, 75);
+    }
+
+    .spansize {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(132, 60, 247)
+    }
+
+    .spanblock {
+      width: 200px;
+      height: 200px;
+      display: block;
+      background-color: rgb(132, 60, 247)
+    }
+
+    .spanbox {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(132, 60, 247);
+      padding: 20px;
+      border: 20px solid red;
+      margin: 30px;
+    }
+
+    .green-box {
+      border: 2px solid green;
+      height: 50px;
+      width: 50px;
+      position: static;
+    }
+
+    .box-relative {
+      position: relative;
+    }
+
+    .box-absolute {
+      position: absolute;
+    }
+
+    .box-sticky {
+      position: sticky;
+    }
+
+    .box-fixed {
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <section class="slides">
+      <!-- Capa -->
+      <section>
+        <h1>Ctrl+Young 2</h1>
+        <h3>
+          Aula 06 -
+          <span style="color: rgb(62, 85, 219);">CSS</span>:
+          Position
+        </h3>
+        <p>
+          <small><span><strong>Marcelo Guimarães Pinto</strong></span>
+            - 27/08/2020</small>
+        </p>
+      </section>
+      <!-- Objetivos -->
+      <section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <h3>
+            Aprender como posicionar itens usando position no
+            <span style="color: rgb(62, 85, 210);">CSS</span>
+          </h3>
+          <br />
+          <div>
+            <ul style="font-size: 1.8rem;">
+              <li class="fragment">Static</li>
+              <li class="fragment">Relative</li>
+              <li class="fragment">Absolute</li>
+              <li class="fragment">Fixed</li>
+              <li class="fragment">Sticky</li>
+            </ul>
+          </div>
+        </section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <p>
+            Além do posicionamento dos elementos ser regido pelo tipo do <em>display</em> utilizado, outra propriedade
+            importante é o position.
+          </p>
+        </section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <p>
+            Ela especifica a posição de um elemento individual na tela. Depois de especificar o tipo do
+            <em>position</em> podemos passar valores para: <em>top</em>, <em>bottom</em>, <em>left</em> e <em>right</em>
+          </p>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>Position: Static</h2>
+        </section>
+        <section>
+          <h4>Esse é o position padrão dos elementos na página.</h4>
+          <p>Este tipo de posicionamento não é afetado pelos valores de <em>top, bottom, left e right</em></p>
+        </section>
+        <section>
+          <h2>Static</h2>
+          <p>O posicionamento static segue o <em>flow</em></p>
+
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: static;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red;">
+                <div class="green-box"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Static</h2>
+          <p>Ele não é afetado por <em>top, bottom, left, right</em></p>
+
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: static;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="top: 20px; left: 30px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red;">
+                <div class="green-box" style="top: 20px; left: 30px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Relative</h2>
+          <p>Um elemento com esse atributo é posicionado relativamente a sua posição normal</p>
+
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: relative;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="top: 20px; left: 30px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red;">
+                <div class="green-box box-relative" style="top: 20px; left: 30px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Outro exemplo</h2>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: relative;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="bottom: 20px; right: 50px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red;">
+                <div class="green-box box-relative" style="bottom: 20px; right: 50px;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Absolute</h2>
+          <p>Um elemento com esse atributo é posicionado relativamente ao seu ancestral</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: absolute;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="top: 20px; left: 30px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red;">
+                <div class="green-box box-absolute" style="top: 20px; left: 30px;"></div>
+              </div>
+              <div class="fragment">
+                <p>Porém o elemento ancestral deve ter um posicionamento(não pode ser static)</p>
+                <p>Nesse caso o posicionamento será relativo ao <em>body</em></p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Absolute</h2>
+          <p>Veja a diferença</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: absolute;
+                    }
+                    </style>
+                  <div style="border: 1px solid red; position: relative;">
+                    <div class="green-box" style="top: 20px; left: 30px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red; position:relative;">
+                <div class="green-box box-absolute" style="top: 20px; left: 30px;"></div>
+              </div>
+              <div class="fragment">
+                <p>
+                  Um elemento com posicionamento absolute é removido do <em>flow</em> e por isso o elemento pai fica
+                  vazio
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Fixed</h2>
+          <p>Um elemento com <em>position: fixed</em> é posicionado em relação ao <em>viewport</em> e será mantido
+            sempre naquela posição.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: fixed;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="top: 500px; left: 900px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red; height: 300px; overflow: scroll;">
+                Um div
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                muito longo
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                mesmo
+                <div class="green-box box-fixed" style="top: 100px; left: 0px;">
+                  Algo
+                </div>
+                outra coisa
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Sticky</h2>
+          <p>Um elemento com <em>position: sticky</em> é posicionado em relação à barra de rolagem. É uma alternãncia
+            entre o <em>relative</em> e o <em>fixed</em>.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.7em" data-trim>
+                  <style>
+                    .green-box{
+                      border: 2px solid green;
+                      height: 50px;
+                      width: 50px;
+                      position: sticky;
+                    }
+                    </style>
+                  <div style="border: 1px solid red;">
+                    <div class="green-box" style="bottom: 0px; left: 50px;"></div>
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div style="border: 1px solid red; height: 300px; overflow: scroll;">
+                Um div
+                <br>
+                <br>
+                <br>
+                <br>
+                muito
+                <br>
+                <br>
+                <div class="green-box box-sticky" style="bottom: 0px; left: 50px;"></div>
+                <br>
+                <br>
+                <br>
+                muito longo
+                <br>
+                <br>
+                <br>
+                <br>
+                muito
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                mesmo
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/search/search.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // Also available as an ES module, see:
+    // https://revealjs.com/initialization/
+    Reveal.initialize({
+      width: "100%",
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+    });
+  </script>
+</body>
+
+</html>
