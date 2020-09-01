@@ -947,11 +947,14 @@ ul.footer-grid-list li span {
     min-height: 360px;
     padding: 8em 0 0;
     text-align: center;
+    position: relative;
 }
 .banner1 h2 {
     font-size: 3em;
     color: #0d5676;
-    margin: 2em 0 2em;
+    position: absolute;
+    top: 90%;
+    left: 50%;
 }
 .banner1 h2 a {
     color: #0d5676;

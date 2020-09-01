@@ -8,8 +8,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-  <title>Your Name</title>
+  <title>Ctrl+Play Cidade Nova</title>
   <!-- for-mobile-apps -->
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="keywords" content="Your Name, your field" />
@@ -81,16 +82,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <ul class="nav navbar-nav menu__list">
               <li class="menu__item menu__item--current"><a href="index.html" class="menu__link"><span
                     class="menu__helper">Home</span></a></li>
-              <li class="menu__item"><a href="research.html" class="menu__link"><span
-                    class="menu__helper">Pesquisa</span></a></li>
-              <li class="menu__item"><a href="images/CV.pdf" class="menu__link" target="_blank"><span
-                    class="menu__helper">CV</span></a></li>
-              <li class="menu__item"><a
-                  href="http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=Your+Name&version=1"
-                  class="menu__link" target="_blank"><span
-                    class="menu__helper">Publicações</span></a></li>
-              <li class="menu__item"><a href="#CONTACT" class="menu__link"><span
-                    class="menu__helper">Contato</span></a></li>
+              <li class="menu__item"><a href="#" id="link-aulas" class="menu__link"><span
+                    class="menu__helper">Aulas</span></a></li>
+              <li class="menu__item"><a href="#" id="link-links" class="menu__link"><span
+                    class="menu__helper">Links</span></a></li>
+              <li class="menu__item"><a href="#" class="menu__link"><span
+                    class="menu__helper">Extras</span></a></li>
+              <li class="menu__item"><a href="#CONTACT" class="menu__link"><span class="menu__helper">Contato</span></a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -107,14 +106,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
   <!-- //banner -->
   <!-- about -->
-  <div class="about">
+  <div class="about" id="main-content">
     <div class="container">
       <div class="about-grids">
         <div class="col-md-6 about-grids-left">
           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                aria-labelledby="headingOne">
+              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body panel_text">
                   I am a graduate student at Caltech and I work on temporibus autem quibusdam et aut
                   officiis debitis aut rerum necessitatibus saepe
@@ -151,23 +149,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </ul>
           </div>
         </div>
+        <div class="col-md-4 footer-grid animated wow slideInLeft" data-wow-delay=".01s">
+          <br><br><br>
+          <p>Rua Professor Pimenta da Veiga, 695, Cidade Nova</p>
+          <p>Belo Horizonte/MG</p>
+          <p>(31) 3484-4912</p>
+        </div>
         <div class="clearfix"> </div>
       </div>
       <div class="footer-grids1">
         <div class="footer-grids1-left animated wow slideInLeft">
           <ul>
             <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="research.html">Pesquisa</a></li>
-            <li><a href="images/CV.pdf">CV</a></li>
-            <li><a
-                href="http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=Your+Name&version=1">Publicações</a>
+            <li><a href="#">Pesquisa</a></li>
+            <li><a href="#">Publicações</a>
             </li>
             <li><a href="#CONTACT">Contato</a></li>
           </ul>
         </div>
         <div class="footer-grids1-right">
-          <p class="animated wow slideInRight" data-wow-delay="0s"><a
-              href="http://w3layouts.com/">Marcelo Guimarães Pinto</a></p>
+          <p class="animated wow slideInRight" data-wow-delay="0s"><a href="http://w3layouts.com/">Marcelo Guimarães
+              Pinto</a></p>
         </div>
         <div class="clearfix"> </div>
       </div>
@@ -195,6 +197,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     });
   </script>
+  <script type="text/javascript" src="js/scripts.js"></script>
   <!-- //here ends scrolling icon -->
 </body>
 
