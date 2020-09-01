@@ -2,6 +2,7 @@
 /examples
 /css
 /js
+/node_modules
 .github
 .gulpfile
 .sass-cache
