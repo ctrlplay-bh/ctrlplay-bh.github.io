@@ -1,0 +1,286 @@
+:root {
+    font-size: 10px;
+}
+
+ion-icon {
+    --ionicon-stroke-width: 12px;
+    padding: 0;
+    margin: 0 -1rem;
+    stroke: #000;
+    stroke-width: 16px;
+    fill:white;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div {
+    margin: 0;
+    padding: 0;
+    font-size: 1.4rem;
+    font-family: "Roboto Mono";
+    color: #444;
+}
+
+a{
+    color: inherit;
+}
+
+p {
+    margin: 2.4rem 0rem;
+    line-height: 2rem;
+}
+
+header {
+    box-sizing: border-box;
+    background: url("images/header-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(100%);
+    height: 100%;
+    font-family: "Lato";
+    height: 40rem;
+}
+
+/* HERO Stylesheet */
+
+.box-name {
+    padding: 7.5rem 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-name > * {
+    align-self: center;
+    color: white;
+    font-family: "Lato";
+    font-weight: 100;
+}
+
+#initial-name-box {
+    font-size: 3.6rem;
+    font-weight: 500;
+    padding: 2rem 1rem;
+    border: white 1px solid;
+    text-align: center;
+    vertical-align: center;
+}
+
+#my-name {
+    font-weight: 300;
+    font-size: 7.5rem;
+    margin: 3rem 0 2.3rem;
+}
+
+#my-position {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* GENERAL LAYOUT */
+
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 6.5rem 9rem;
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    height: 100%;
+}
+.section-title {
+    font-size: 2.4rem;
+    font-family: "Lato";
+    color: #101010;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.sub-section-title {
+    font-family: "Lato";
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.icon-container,
+.icon-container-small {
+    position: relative;
+    display: block;
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    padding: 0 0 1rem 0;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+.icon-container-small {
+    font-size: 3rem;
+}
+
+.icon-container::after,
+.icon-container-small::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    background: black;
+    height: 1px;
+    width: 50%;
+}
+
+
+.section-card {
+    display: flow-root;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 4.5rem 2.9rem;
+    line-height: 2.2rem;
+}
+
+.section-card:first-child {
+    margin-right: 3rem;
+}
+
+.one-column {
+    width: 38rem;
+    background: repeating-linear-gradient(
+        45deg,
+        rgb(245, 245, 245) 1px,
+        rgb(245, 245, 245) 2px,
+        #fff 3px,
+        #fff 11px
+    );
+}
+
+.two-column {
+    width: 80rem;
+}
+
+.my-picture {
+    margin: auto;
+    width: 29rem;
+    height: 29rem;
+
+    border-radius: 50%;
+    background-image: url("images/IMG_3565.jpg");
+    backdrop-filter: grayscale(100%);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+}
+
+.picture-container {
+    width: 100%;
+    margin-bottom: 4rem;
+    position: relative;
+    padding-bottom: 3rem;
+}
+
+.picture-container::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    background: #101010;
+    height: 1px;
+    width: 10%;
+}
+
+#dados-pessoais p {
+    margin: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.social-networks {
+    display: flex;
+    width: 100%;
+}
+
+.social-networks ion-icon {
+    font-size: 3rem;
+    margin: 0.5rem;
+}
+
+.social-networks ion-icon:last-child {
+    margin-left: auto;
+}
+
+.title-right {
+    position: relative;
+    font-family: "Lato";
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+    padding-bottom: 0.3rem;
+}
+
+.title-right:after {
+    position: absolute;
+    content: "";
+    background: #101010;
+    height: 1px;
+    width: 1.8rem;
+    bottom: 0;
+    right: 0;
+}
+
+.skill-bars {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.skill-container {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.skill {
+    display: flow-root;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    clear: both;
+}
+
+.value-skill {
+    margin-right: auto;
+    float: left;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+.name-skill {
+    margin-left: auto;
+    float: right;
+}
+
+.bar {
+    background: #aaa;
+    height: 2px;
+    width: 100%;
+    position: relative;
+}
+
+.value-bar {
+    background: #101010;
+    position: absolute;
+    content: "";
+    bottom: 0;
+    right: 0;
+    height: 2px;
+}
