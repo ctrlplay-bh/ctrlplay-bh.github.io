@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Aula 08 - CSS: Animations</title>
+
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+
+  <style>
+    em.property {
+      color: #A6E22E;
+      font-size: 1em;
+      font-family: "Roboto Mono", monospace;
+      font-style: normal;
+    }
+
+
+
+    @keyframes cubo-keep-going {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      20% {
+        transform: rotateX(72deg) rotateY(72deg);
+      }
+
+      40% {
+        transform: rotateX(144deg) rotateY(144deg);
+      }
+
+      60% {
+        transform: rotateX(216deg) rotateY(216deg);
+      }
+
+      80% {
+        transform: rotateX(288deg) rotateY(288deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
+    .cube {
+      box-sizing: content-box;
+      font-size: 4em;
+      width: 2em;
+      height: 2em;
+      margin: 0 auto;
+      transform-style: preserve-3d;
+      position: relative;
+
+      animation-name: cubo-keep-going;
+      animation-duration: 4s;
+      animation-delay: 0.1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .side {
+      position: absolute;
+      width: 2em;
+      height: 2em;
+      color: black;
+      background: rgba(255, 91, 77, 0.5);
+      border: 1px solid rgba(0, 0, 0, .5);
+      text-align: center;
+      line-height: 2em;
+    }
+
+    .front {
+      transform: translateZ(1em);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(1em);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(1em);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(1em);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(1em);
+    }
+
+    .back {
+      transform: rotateY(-180deg) translateZ(1em);
+    }
+
+    dd {
+      color: rgb(102, 102, 102);
+      margin-bottom: 15px;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      margin-top: 1.5em;
+      align-items: flex-start;
+    }
+
+    .col {
+      flex: 1;
+    }
+
+    .center-div {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    :root {
+      font-size: 25px;
+    }
+
+    .padding-div {
+      padding: 1px;
+      margin: 10px;
+    }
+
+    .not-padding-div {
+      margin: 10px;
+    }
+
+    .red-box {
+      height: 100px;
+      width: 100px;
+      background-color: rgba(255, 91, 77)
+    }
+
+    @keyframes exemplo {
+      0% {
+        background-color: red;
+        width: 200px;
+      }
+
+      50% {
+        background-color: green;
+        width: 400px;
+      }
+
+      100% {
+        background-color: blue;
+        width: 600px;
+      }
+    }
+
+    .colored-box {
+      background-color: green;
+      height: 50px;
+      width: 200px;
+      animation-name: exemplo;
+      animation-duration: 6s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <section class="slides">
+      <!-- Capa -->
+      <section>
+        <h1>Ctrl+Young 2</h1>
+        <h3>
+          Aula 08 -
+          <span style="color: rgb(62, 85, 219);">CSS</span>:
+          Animations
+        </h3>
+        <p>
+          <small><span><strong>Marcelo Guimarães Pinto</strong></span>
+            - 09/09/2020</small>
+        </p>
+      </section>
+      <!-- Introdução -->
+      <section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <h1>
+            Animations
+          </h1>
+
+        </section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05 " data-background-size="contain" data-background-position="top">
+          <p>Na última aula vimos como criar uma transição de um estilo para outro.</p>
+          <p>Uma transição representa uma mudança de um estilo inicial para um estilo final, alterando suavemente os
+            valores da propriedade especificada.</p>
+        </section>
+        <section data-background-image="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
+          data-background-opacity="0.05" data-background-size="contain" data-background-position="top">
+          <p>Porém uma transição só nos permite animar dessa forma, não podemos ter um estado intermediário.</p>
+          <p class="fragment">Para esses casos, onde queremos criar animações com mais estados, fazemos o uso da
+            propriedade <em class="property">animation</em></p>
+        </section>
+
+        <section>
+
+          <div id="cubo-animation" class="cube">
+            <div class="front side">1</div>
+            <div class="top side">2</div>
+            <div class="bottom side">3</div>
+            <div class="left side">4</div>
+            <div class="right side">5</div>
+            <div class="back side">6</div>
+          </div>
+        </section>
+
+      </section>
+      <section>
+        <section>
+          <h2>keyframes</h2>
+        </section>
+        <section>
+          <h3><em class="property">@keyframes</em></h3>
+          <p>É responsável por especificar como a animação deve funcionar. Para isso deve informar quais momentos ela
+            deve alterar e qual estilo deve ser aplicado naquele instante</p>
+        </section>
+        <section>
+          <h3>Exemplos</h3>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim>
+                  <style>
+
+                    @keyframes exemplo{
+                      0% {background-color: red;
+                          width: 200px;
+                          }
+                      50% {background-color: green;
+                           width: 400px;}
+                      100% {background-color: blue;
+                            width: 600px;}
+                    }
+                  </style>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim>
+                  <style>
+
+                    @keyframes exemplo2{
+                      from {height: 10px;}
+                      to {height: 20px}
+                    }
+                  </style>
+                </code>
+              </pre>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Propriedades</h2>
+        </section>
+        <section>
+          <h3><em class="property">animation-name</em></h3>
+          <p>Especifica o nome do <i>keyframe</i> que você deseja ligar ao seletor.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|3|17|3,17">
+                  <style>
+
+                    @keyframes exemplo{
+                      0% {background-color: red;
+                          width: 200px;
+                          }
+                      50% {background-color: green;
+                           width: 400px;}
+                      100% {background-color: blue;
+                            width: 600px;}
+                    }
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3><em class="property">animation-duration</em></h3>
+          <p>Especifica o tempo que uma animação deve durar. Se deixado vazio o valor <i>default</i> é 0s (sem
+            animação).</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|18">
+                  <style>
+
+                    @keyframes exemplo{
+                      0% {background-color: red;
+                          width: 200px;
+                          }
+                      50% {background-color: green;
+                           width: 400px;}
+                      100% {background-color: blue;
+                            width: 600px;}
+                    }
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3><em class="property">animation-timing-function</em></h3>
+          <p>Especifica a curva de velocidade da animação</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|19">
+                  <style>
+
+                    @keyframes exemplo{
+                      0% {background-color: red;
+                          width: 200px;
+                          }
+                      50% {background-color: green;
+                           width: 400px;}
+                      100% {background-color: blue;
+                            width: 600px;}
+                    }
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-timing-function: linear;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-timing-function: linear;"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3><em class="property">animation-delay</em></h3>
+          <p>Especifica um tempo para que a animação comece.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|9">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-delay: 5s;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-delay: 5s;"></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3><em class="property">animation-iteration-count</em></h3>
+          <p>Especifica quantas vezes uma animação deve repetir.</p>
+
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|9">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-iteration-count: infinite;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-iteration-count: infinite;"></div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3><em class="property">animation-direction</em></h3>
+
+          <p>Especifica se a animação deve tocar em ciclos ou em modo reverso.</p>
+
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|10">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-iteration-count: infinite;
+                      animation-direction: alternate;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-iteration-count: infinite; animation-direction: alternate;">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3><em class="property">animation-fill-mode</em></h3>
+          <p>Especifica qual estilo aplicar ao elemento quando a animação não estiver funcionando.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|09">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-fill-mode: forwards;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-fill-mode: forwards;">
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3><em class="property">animation-play-state</em></h3>
+          <p>Especifica se a animação está tocando ou não.</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|09">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation-name: exemplo;
+                      animation-duration: 3s;
+                      animation-play-state: paused;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation-play-state: paused;">
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3><em class="property">animation</em>: shorthand-property</h3>
+          <p>Aplica várias propriedades de uma só vez</p>
+          <div class="container">
+            <div class="col">
+              <pre style="margin-top: 0;">
+                <code style="font-size: 0.6em" data-trim data-line-numbers="2|7">
+                  <style>
+
+                    .colored-box{
+                      background-color: green;
+                      height: 50px;
+                      width: 50px;
+                      animation: exemplo 3s linear 5s 4 reverse forwards;
+                    }
+                    </style>
+                    <div class="colored-box">
+                  </div>
+                </code>
+              </pre>
+            </div>
+            <div class="col">
+              <div class="colored-box" style="animation: exemplo 3s linear 5s 4 reverse forwards;">
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+    </section>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/search/search.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // Also available as an ES module, see:
+    // https://revealjs.com/initialization/
+    Reveal.initialize({
+      width: "100%",
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+    });
+  </script>
+</body>
+
+</html>
